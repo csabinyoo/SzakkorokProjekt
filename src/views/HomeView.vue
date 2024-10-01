@@ -22,7 +22,6 @@
                 class="form-select"
                 aria-label="Default select example"
                 v-model="tanulo.szakkorId"
-                @change="saveSzakkor(tanulo.id, tanulo.szakkorId)"
               >
                 <option
                   v-for="szakkor in szakkorok"
