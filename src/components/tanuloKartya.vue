@@ -1,5 +1,5 @@
 <template>
-  <div class="szakkor-card animacio" style="animation-delay: 2s">
+  <div class="szakkor-card animacio" style="animation-delay: 3s">
     <div class="szakkor-header">
       <h2>{{ szakkor.nev }}</h2>
       <span
