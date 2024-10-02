@@ -136,4 +136,9 @@ export default {
 .my-table thead th:last-child {
   border-top-right-radius: 10px !important;
 }
+
+.form-select:focus {
+  -webkit-box-shadow: inset 0 0 0 transparent, 0 0 0 transparent;
+  box-shadow: inset 0 0 0 transparent, 0 0 0 transparent;
+}
 </style>
