@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-md-6 side-a">
       <h1>Táblázat</h1>
-      <table class="table animacio my-table" style="animation-delay: 1s">
+      <button @click="randomSzakkor" class="btn btn-primary mb-3 animacio" style="animation-delay: 1s">Szakkör Kiosztás</button>
+      <table class="table animacio my-table" style="animation-delay: 2s">
         <thead>
           <tr>
             <th>Név</th>
@@ -18,16 +19,8 @@
             </td>
             <td class="tabla-animacio">{{ tanulo.osztaly }}</td>
             <td class="tabla-animacio">
-              <select
-                class="form-select"
-                aria-label="Default select example"
-                v-model="tanulo.szakkorId"
-              >
-                <option
-                  v-for="szakkor in szakkorok"
-                  :key="szakkor.id"
-                  :value="szakkor.id"
-                >
+              <select class="form-select" aria-label="Default select example" v-model="tanulo.szakkorId">
+                <option v-for="szakkor in szakkorok" :key="szakkor.id" :value="szakkor.id">
                   {{ szakkor.nev }}
                 </option>
               </select>
@@ -39,12 +32,7 @@
     <div class="col-md-6 side-b">
       <div class="szakkor-lista">
         <h1>Szakkörök</h1>
-        <tanuloKartya
-          v-for="szakkor in szakkorok"
-          :key="szakkor.id"
-          :szakkor="szakkor"
-          :tanulok="tanulok"
-        />
+        <tanuloKartya v-for="szakkor in szakkorok" :key="szakkor.id" :szakkor="szakkor" :tanulok="tanulok" />
       </div>
     </div>
   </div>
@@ -89,6 +77,12 @@ export default {
         ? "fa-regular fa-circle-user orange"
         : "fa-regular fa-circle-user text-color";
     },
+    randomSzakkor() {
+      this.tanulok.forEach(tanulo => {
+        const randomIndex = Math.floor(Math.random() * (this.szakkorok.length));
+        tanulo.szakkorId = this.szakkorok[randomIndex].id;
+      });
+    },
   },
 };
 </script>
@@ -98,7 +92,7 @@ export default {
   vertical-align: middle;
 }
 
-.table > :not(caption) > * > * {
+.table> :not(caption)>*>* {
   background-color: transparent;
   color: #fff;
 }
@@ -141,4 +135,27 @@ export default {
   -webkit-box-shadow: inset 0 0 0 transparent, 0 0 0 transparent;
   box-shadow: inset 0 0 0 transparent, 0 0 0 transparent;
 }
+
+.btn {
+  transition: .3s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+/* 
+.row {
+  animation: animate 5s linear infinite;
+}
+
+@keyframes animate {
+  0%, 100% {
+    width: calc();
+    filter: hue-rotate(0);
+  }
+  50% {
+    filter: hue-rotate(360deg);
+  }
+} */
 </style>
